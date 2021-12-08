@@ -1,0 +1,36 @@
+{
+  "name": "waterways",
+  "version": "1.0.0",
+  "description": "A API to retrieve local waterway data for fishing and plug into shopify",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Naternelson/waterways.git"
+  },
+  "keywords": [
+    "waterways",
+    "fishing",
+    "fishing-equipment",
+    "sporting"
+  ],
+  "author": "Nate Nelson <7nater.nelson@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naternelson/waterways/issues"
+  },
+  "homepage": "https://github.com/Naternelson/waterways#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^27.4.3",
+    "superagent": "^6.1.0",
+    "supertest": "^6.1.6"
+  }
+}
