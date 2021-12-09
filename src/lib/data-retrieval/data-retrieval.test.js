@@ -1,15 +1,11 @@
 const dataRetrieval = require("./data-retrieval")
 describe("Data Retrieval should make requests to USGS API and get correct data", ()=> {
-    const params ={
-        name: "STEWART LAKE OUTFLOW NEAR JENSEN, UT",
-        lat: 41.96591667, lon: -111.3981778,
-        code: 10055000
-    }
+
     const properParams ={
         format: 'json',
         indent: 'on',
         stateCd: 'ut',
-        parameterCd: '00060,00065',
+        parameterCd: '45588,00065',
         siteType: 'LK',
         siteStatus: 'all'
     }

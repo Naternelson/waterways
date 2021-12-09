@@ -1,9 +1,6 @@
 This branch will require the following data: 
-
-- [ ] A Lat / Lon of the waterway ||
-- [ ] A Name of the Waterway || 
-- [ ] The Code for the Waterway
-
+- [ ] State of choice
+- [ ] Current GeoLocation
 --- 
 The Branch will then return data for the specified data including: 
 - [ ] The Name of the Waterway
