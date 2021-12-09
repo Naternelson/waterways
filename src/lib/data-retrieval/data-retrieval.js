@@ -15,7 +15,7 @@ async function request(params){
         return res
     } catch(err){
         return err
-    ==
+    }
     
 }
 
