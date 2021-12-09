@@ -5,7 +5,7 @@ const codes = require("../data-retrieval/data-types")
 const _ = require("lodash")
 
 
-class WaterWay{
+class Waterway{
     // ====================
     // Static Variables
     // ====================
@@ -31,7 +31,7 @@ class WaterWay{
     // ====================
     // Generate Instances
     // ====================
-    // A Helper function to process the raw data from WaterWays.retrieveArea
+    // A Helper function to process the raw data from Waterways.retrieveArea
     static generateInstances = (rawData, coords, maxDistance) => {
 
         const waterways = {}
@@ -109,8 +109,8 @@ class WaterWay{
         }
     }
 }
-module.exports = WaterWay
-WaterWay.retrieveArea({latitude: 41.3057347, longitude: -112.0594554}).then(data => {
+module.exports = Waterway
+Waterway.retrieveArea({latitude: 41.3057347, longitude: -112.0594554}).then(data => {
     console.log(data[data.length -1])
-    // console.log(WaterWay.codes)
+    // console.log(Waterway.codes)
 })
