@@ -108,6 +108,12 @@ class Waterway{
             this.state = stateCodes[props.stateCd]
         }
     }
+    serialize(){
+        return Object.keys(this).reduce((obj, key) =>  {
+            obj[key] = this[key]
+            return obj
+        },{})
+    }
 }
 // module.exports = Waterway
 
