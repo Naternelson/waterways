@@ -1,7 +1,12 @@
-const Waterway = require("./waterway")
-const stateCodes = require("fips-state-codes")
-const geolib = require("geolib")
-const converter = require("conversions")
+// const Waterway = require("./waterway")
+// const stateCodes = require("fips-state-codes")
+// const geolib = require("geolib")
+// const converter = require("conversions")
+
+import Waterway from './waterway'
+import stateCodes from './waterway-codes'
+import {isPointWithinRadius} from 'geolib'
+import converter from "conversions"
 
 describe("Waterway.retrieveArea should be able to make api call to waterservice.usgs.gov", ()=>{
     const params = {
@@ -60,7 +65,7 @@ describe("Waterway.retrieveArea should be able to make api call to waterservice.
             const data = await waterwayPromise
             data.forEach(w => {
                 const center = {latitude: params.latitude, longitude: params.longitude}
-                const expected = geolib.isPointWithinRadius(w.coord, center, converter(params.radius, params.unitType, "metres"))
+                const expected = isPointWithinRadius(w.coord, center, converter(params.radius, params.unitType, "metres"))
                 expect(expected).toBeTruthy()
             })
         })

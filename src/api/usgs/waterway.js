@@ -2,13 +2,6 @@ import axios from 'axios'
 import codes from './waterway-codes'
 import _ from 'lodash'
 import stateCodes from 'fips-state-codes'
-// const geolib = require("geolib")
-// const converter = require("conversions")
-// const axios = require("axios")
-// const codes = require("./waterway-codes")
-// const _ = require("lodash")
-// const stateCodes = require("fips-state-codes")
-
 import {getBounds, getBoundsOfDistance, getDistance} from 'geolib'
 import converter from 'conversions'
 
