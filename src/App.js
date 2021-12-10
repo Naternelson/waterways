@@ -12,7 +12,6 @@ function App() {
       radius: 50, 
       unitType: "miles"
     }
-    console.log("sup")
     Waterway.retrieveArea(params).then(data => console.log(Object.keys(data[0]))).catch(err => console.log(`My Error ${err}`))
   },[])
   

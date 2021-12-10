@@ -21,7 +21,7 @@ const slice = createSlice({
             store.data[id] = action.payload 
         },
         waterwayDeleted: (store, action) => {
-            const id = action.payload.id 
+            const id = action.payload
             delete store.data[id]
         },
         waterwaysAdded: (store, action) => {
@@ -36,9 +36,10 @@ const slice = createSlice({
             store.data = {...store.data, ...payload}
         },
         waterwaysDeleted: (store, action) => {
-            let {payload} = action
+            let payload = action.payload
             if(Array.isArray(payload)){
-                if(payload[0].id) payload = action.payload.map((el)=>{el.id})
+                if(payload[0].id) {
+                    payload = action.payload.map((el)=> el.id)}
             } else {
                 payload = Object.keys(action.payload)
             }

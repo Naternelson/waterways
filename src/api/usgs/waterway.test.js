@@ -5,9 +5,9 @@
 
 import Waterway from './waterway'
 import stateCodes from './waterway-codes'
-import {isPointWithinRadius} from 'geolib'
+import { isPointWithinRadius } from 'geolib'
 import converter from "conversions"
-
+jest.setTimeout(10000)
 describe("Waterway.retrieveArea should be able to make api call to waterservice.usgs.gov", ()=>{
     const params = {
         latitude: 41.3024159,
