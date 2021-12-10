@@ -115,6 +115,5 @@ class Waterway{
         },{})
     }
 }
-// module.exports = Waterway
 
 export default Waterway
