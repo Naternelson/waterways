@@ -71,10 +71,10 @@ class Waterway{
         return Object.values(waterways) 
     }
     static retrieveArea = async ({latitude, longitude, radius=100, unitType="miles"}) => {
-        if(!latitude){
-            latitude = 41.165740,
-            longitude = -112.025970
-        }
+        // if(!latitude){
+        //     latitude = 41.165740,
+        //     longitude = -112.025970
+        // }
         const params = {
             format: "json",
             indent: "on",

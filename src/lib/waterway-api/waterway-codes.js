@@ -8,5 +8,4 @@ const codes = {
     "00060": "Discharge ft3/s",
     "00300": "Dissolved oxygen in water, unfiltered, mg/L"
 }
-
 module.exports = codes
