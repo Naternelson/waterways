@@ -1,9 +1,17 @@
+import axios from 'axios'
+import codes from './waterway-codes'
+import _ from 'lodash'
+import stateCodes from 'fips-state-codes'
 const geolib = require("geolib")
 const converter = require("conversions")
-const axios = require("axios")
-const codes = require("./waterway-codes")
-const _ = require("lodash")
-const stateCodes = require("fips-state-codes")
+// const axios = require("axios")
+// const codes = require("./waterway-codes")
+// const _ = require("lodash")
+// const stateCodes = require("fips-state-codes")
+
+// import geolib from 'geolib'
+// import converter from 'conversions'
+
 
 class Waterway{
     // ====================
@@ -36,7 +44,7 @@ class Waterway{
 
         const waterways = {}
         const tss = rawData.value.timeSeries
-        tss.forEach((ts, index) => {
+        tss.forEach((ts) => {
             const si = ts.sourceInfo
             const vi = ts.variable 
             const val = ts.values[0].value[0]
@@ -61,7 +69,7 @@ class Waterway{
             this.codes[vi.variableCode[0].value] = vi.variableDescription
             const waterway = waterways[siteCode]
             waterway.data[vi.variableCode[0].value] = {
-                noData: val.value == vi.notDataValue, 
+                noData: val.value == vi.noDataValue, 
                 value: val.value, 
                 dateTime: new Date(val.dateTime), 
                 unit: vi.unit.unitCode,
@@ -71,10 +79,10 @@ class Waterway{
         return Object.values(waterways) 
     }
     static retrieveArea = async ({latitude, longitude, radius=100, unitType="miles"}) => {
-        // if(!latitude){
-        //     latitude = 41.165740,
-        //     longitude = -112.025970
-        // }
+        if(!latitude){
+            latitude = 41.165740
+            longitude = -112.025970
+        }
         const params = {
             format: "json",
             indent: "on",
@@ -103,4 +111,6 @@ class Waterway{
         }
     }
 }
-module.exports = Waterway
+// module.exports = Waterway
+
+export default Waterway

@@ -1,15 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import Waterway from './api/waterway/usgs';
+import { useEffect } from 'react';
+import Waterway from './api/usgs/waterway';
 
 function App() {
-  const params = {
-    latitude: 41.3024159,
-    longitude: -112.0475231,
-    radius: 50, 
-    unitType: "miles"
-  }
-  Waterway.retrieveArea(params).then(data => console.log(data)).catch(err => console.log(err))
+
+  useEffect(()=>{
+    const params = {
+      latitude: 41.3024159,
+      longitude: -112.0475231,
+      radius: 50, 
+      unitType: "miles"
+    }
+    Waterway.retrieveArea(params).then(data => console.log(data)).catch(err => console.log(`My Error ${err}`))
+  },[])
+  
   return (
     <div className="App">
       <header className="App-header">
