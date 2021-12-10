@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Waterway from './lib/waterway-api/waterway';
+import Waterway from './api/waterway/usgs';
 
 function App() {
   const params = {
@@ -8,8 +8,8 @@ function App() {
     longitude: -112.0475231,
     radius: 50, 
     unitType: "miles"
-}
-   const prom = Waterway.retrieveArea(params).then(data => console.log(data)).catch(err => console.log(err))
+  }
+  Waterway.retrieveArea(params).then(data => console.log(data)).catch(err => console.log(err))
   return (
     <div className="App">
       <header className="App-header">
