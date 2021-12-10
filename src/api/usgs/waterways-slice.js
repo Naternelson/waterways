@@ -71,12 +71,12 @@ export const sortWaterwaysSelector = (store, closestFirst=true) => {
     const arr = waterwaysAsArraySelector(store)
     if(!location.latitude) return arr  
     return arr.sort((a, b) => {
-        distanceA = getDistance(location, a.coord)
-        distanceB = getDistance(location, b.coord)
+        const distanceA = getDistance(location, a.coord)
+        const distanceB = getDistance(location, b.coord)
         if(closestFirst){
-            return a-b
+            return distanceA-distanceB
         } else {
-            return b-a
+            return distanceB-distanceA
         }
     })
 }
