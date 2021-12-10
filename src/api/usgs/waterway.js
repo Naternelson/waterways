@@ -2,15 +2,15 @@ import axios from 'axios'
 import codes from './waterway-codes'
 import _ from 'lodash'
 import stateCodes from 'fips-state-codes'
-const geolib = require("geolib")
-const converter = require("conversions")
+// const geolib = require("geolib")
+// const converter = require("conversions")
 // const axios = require("axios")
 // const codes = require("./waterway-codes")
 // const _ = require("lodash")
 // const stateCodes = require("fips-state-codes")
 
-// import geolib from 'geolib'
-// import converter from 'conversions'
+import {getBounds, getBoundsOfDistance, getDistance} from 'geolib'
+import converter from 'conversions'
 
 
 class Waterway{
@@ -31,7 +31,7 @@ class Waterway{
     // ====================
     // A helper function to create a square of coordinates around a given point and radius
     static getBoundingBox = (coord, distance) => {
-        const {maxLat, minLat, maxLng, minLng} = geolib.getBounds(geolib.getBoundsOfDistance(coord, distance))
+        const {maxLat, minLat, maxLng, minLng} = getBounds(getBoundsOfDistance(coord, distance))
         return [minLng, minLat, maxLng, maxLat].map(el => Number(el).toFixed(7).toString()).join(",")
         
     }
@@ -61,9 +61,7 @@ class Waterway{
                     return obj 
                 }, args) 
                 // console.log({coords, maxDistance, distance: geolib.getDistance(coords, args.coord)})
-                if(coords && maxDistance && geolib.getDistance(coords, args.coord) > maxDistance) {
-                    return
-                };
+                if(coords && maxDistance && getDistance(coords, args.coord) > maxDistance) return
                 waterways[siteCode] = new this(args)
             }
             this.codes[vi.variableCode[0].value] = vi.variableDescription
