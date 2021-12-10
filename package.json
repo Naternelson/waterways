@@ -4,7 +4,7 @@
   "description": "A API to retrieve local waterway data for fishing and plug into shopify",
   "main": "src/server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,10 @@
     "axios": "^0.24.0",
     "conversions": "^1.5.2",
     "express": "^4.17.1",
+    "fips-state-codes": "^1.0.1",
     "geolib": "^3.3.3",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "node-navigator": "^1.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

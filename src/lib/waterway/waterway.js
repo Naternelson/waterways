@@ -1,9 +1,9 @@
 const geolib = require("geolib")
 const converter = require("conversions")
 const axios = require("axios")
-const codes = require("../data-retrieval/data-types")
+const codes = require("./waterway-codes")
 const _ = require("lodash")
-
+const stateCodes = require("fips-state-codes")
 
 class Waterway{
     // ====================
@@ -41,28 +41,27 @@ class Waterway{
             const vi = ts.variable 
             const val = ts.values[0].value[0]
             const siteCode = si.siteCode[0].value
-            if(index === tss.length -1) {
-               console.log({vi})   
-            }
-            // console.log(`siteProperty is an Array`, Array.isArray(si.siteProperty))
-            // Before we add specific data, let's check and setup a new Waterway instance
+
             if(!(siteCode in waterways)){
-                // console.log("HEyo")
                 let args = {
                     id: siteCode,
                     name: si.siteName, 
-                    coords: {latitude: si.geoLocation.geogLocation.latitude, longitude: si.geoLocation.geogLocation.longitude}
+                    coord: {latitude: si.geoLocation.geogLocation.latitude, longitude: si.geoLocation.geogLocation.longitude}
                 } 
                 args = si.siteProperty.reduce((obj, el)=>{
                     obj[el.name] = el.value
                     return obj 
                 }, args) 
-                if(coords && maxDistance && geolib.getDistance(coords, args.coords) > maxDistance) return;
+                // console.log({coords, maxDistance, distance: geolib.getDistance(coords, args.coord)})
+                if(coords && maxDistance && geolib.getDistance(coords, args.coord) > maxDistance) {
+                    return
+                };
                 waterways[siteCode] = new this(args)
             }
             this.codes[vi.variableCode[0].value] = vi.variableDescription
             const waterway = waterways[siteCode]
             waterway.data[vi.variableCode[0].value] = {
+                noData: val.value == vi.notDataValue, 
                 value: val.value, 
                 dateTime: new Date(val.dateTime), 
                 unit: vi.unit.unitCode,
@@ -73,15 +72,8 @@ class Waterway{
     }
     static retrieveArea = async ({latitude, longitude, radius=100, unitType="miles"}) => {
         if(!latitude){
-            if(navigator.geolocation){
-                const cb = (fn) => new Promise((res, rej) => fn((pos)=> res(pos), (err)=> rej(err)))
-                const position = await cb(navigator.geolocation.getCurrentPosition)
-                latitude = position.coords.latitude 
-                longitude = position.coords.longitude
-            } else {
-                latitude = 41.165740,
-                longitude = -112.025970
-            }
+            latitude = 41.165740,
+            longitude = -112.025970
         }
         const params = {
             format: "json",
@@ -95,22 +87,20 @@ class Waterway{
         params.bBox =  this.getBoundingBox({latitude, longitude}, meters)
         try{
             const response = await axios.get(this.apiUrl, {params})
-            return this.generateInstances(response.data, meters)
+            return this.generateInstances(response.data, {latitude, longitude}, meters)
         } catch(err) {
             console.error(err)
         }
     }
     data = {}
     constructor(props){
-        // this.data = {}
         for(let key in props) this[key] = props[key]
         if(props.name){
             this.name = _.startCase(props.name.toLowerCase()) 
         }
+        if(props.stateCd){
+            this.state = stateCodes[props.stateCd]
+        }
     }
 }
 module.exports = Waterway
-Waterway.retrieveArea({latitude: 41.3057347, longitude: -112.0594554}).then(data => {
-    console.log(data[data.length -1])
-    // console.log(Waterway.codes)
-})
