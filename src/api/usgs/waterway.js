@@ -4,7 +4,6 @@ import _ from 'lodash'
 import stateCodes from 'fips-state-codes'
 import {getBounds, getBoundsOfDistance, getDistance} from 'geolib'
 import converter from 'conversions'
-import { DataObjectTwoTone } from '@mui/icons-material'
 
 
 class Waterway{
@@ -78,7 +77,7 @@ class Waterway{
             waterway.data[vi.variableCode[0].value] = {
                 noData: val.value == vi.noDataValue, 
                 value: val.value, 
-                dateTime: new Date(val.dateTime), 
+                dateTime: val.dateTime, 
                 unit: vi.unit.unitCode,
                 description: vi.variableDescription
             } 
@@ -119,7 +118,7 @@ class Waterway{
     }
     serialize(){
         return Object.keys(this).reduce((obj, key) =>  {
-            obj[key] = this[key]
+            obj[key] = this[key] instanceof Date ? this[key].toString() : this[key] 
             return obj
         },{})
     }

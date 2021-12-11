@@ -1,13 +1,14 @@
 import Waterway from "./waterway"
-import { waterwaysAdded, waterwaysLoaded } from "./waterways-slice"
+import { waterwaysAdded, waterwaysLoaded, getWaterData } from "./waterways-slice"
 const api = ({dispatch}) => next => async action => {
-    if(action.type !== 'apiCallBegan') return next(action)
+    next(action)
+    if(action.type !== getWaterData.type) return 
     try{
         const list = await Waterway.retrieveArea(action.payload)
         dispatch(waterwaysAdded(Waterway.serialize(list)))
         dispatch(waterwaysLoaded())
     } catch(err) {
-        console.log(err)
+        console.error(err)
     }
 }
 export default api

@@ -8,7 +8,7 @@ const initialState = {
     data: {}
 }
 
-export const getWaterData = createAction("apiCallBegan")
+export const getWaterData = createAction("waterways/api/callBegan")
 
 const slice = createSlice({
     name, 

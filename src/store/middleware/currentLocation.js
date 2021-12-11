@@ -1,11 +1,14 @@
 import { locationChanged } from "../../api/usgs/waterways-slice"
 import { createAction } from "@reduxjs/toolkit"
 const request = ({dispatch}) => next => async (action) => {
-    if(action.type !== "locationRequest") return next(action)
+    next(action)
+    if(action.type !== requestLocation.type) return
     navigator.geolocation.getCurrentPosition((pos) => {
-        const {latitude, longitude} = pos
+        const {latitude, longitude} = pos.coords
         dispatch(locationChanged({latitude, longitude}))
+    }, (error) => {
+        console.error(error)
     })
 }
 export default request
-export const requestLocation = createAction("locationRequest")
+export const requestLocation = createAction("ui/locationRequest")
