@@ -4,6 +4,7 @@ import _ from 'lodash'
 import stateCodes from 'fips-state-codes'
 import {getBounds, getBoundsOfDistance, getDistance} from 'geolib'
 import converter from 'conversions'
+import { DataObjectTwoTone } from '@mui/icons-material'
 
 
 class Waterway{
@@ -13,6 +14,21 @@ class Waterway{
     // A dynamic object, that returns the string associated with the VariableCode from USGS 
     static codes = {}
 
+    // ====================
+    // Serialize Collection
+    // ====================
+    static serialize(list){
+        if(!Array.isArray(list)){
+            list = Object.values(list)
+        } 
+        return list.map((el)=>{
+            try{
+                return el.serialize()
+            } catch {
+                return el 
+            }
+        })
+    }
     // ====================
     // Constants
     // ====================

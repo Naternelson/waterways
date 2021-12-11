@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAction } from "@reduxjs/toolkit";
 import {getDistance} from "geolib"
 
 const name = "waterways"
@@ -7,6 +7,8 @@ const initialState = {
     loading: true,
     data: {}
 }
+
+export const getWaterData = createAction("apiCallBegan")
 
 const slice = createSlice({
     name, 
