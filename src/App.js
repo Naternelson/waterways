@@ -7,24 +7,26 @@ import { useEffect } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import {getWaterData} from "./api/usgs/waterways-slice"
 import {requestLocation} from "./store/middleware/currentLocation"
+import Playground from './playground/playground';
 
 function App() {
   const dispatch = useDispatch()
   const position = useSelector(s => s.entities.waterways.location)
   const available = position.latitude && position.longitude
+
   useEffect(() =>{
     if(available) dispatch(getWaterData(position))
   }, [position, available, dispatch])
 
 
   useEffect(()=> {
-    if(available) dispatch(requestLocation())
+    if(!available) dispatch(requestLocation())
   },[available, dispatch])
 
   return (
-      <Container>
-        <WaterwayList/>
-      </Container>
+    <Playground>
+      <WaterwayList/>
+    </Playground>
   );
 }
 

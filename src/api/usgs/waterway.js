@@ -68,12 +68,12 @@ class Waterway{
                     obj[el.name] = el.value
                     return obj 
                 }, args) 
-                // console.log({coords, maxDistance, distance: geolib.getDistance(coords, args.coord)})
-                if(coords && maxDistance && getDistance(coords, args.coord) > maxDistance) return
+                args.distance =  getDistance(coords, args.coord)
+                if(coords && maxDistance && args.distance > maxDistance) return
                 waterways[siteCode] = new this(args)
             }
             this.codes[vi.variableCode[0].value] = vi.variableDescription
-            const waterway = waterways[siteCode]
+            const waterway = waterways[siteCode] 
             waterway.data[vi.variableCode[0].value] = {
                 noData: val.value == vi.noDataValue, 
                 value: val.value, 
