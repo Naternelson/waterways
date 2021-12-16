@@ -7,6 +7,7 @@ import {requestLocation} from "./store/middleware/currentLocation"
 import Playground from './playground/playground';
 
 import Display from './componenets/display/display';
+import PlaygroundChild from './playground/playground-child-test';
 
 function App() {
   const dispatch = useDispatch()
@@ -48,6 +49,7 @@ function App() {
   return (
     <Playground>
       <Display fullAddress={fullAddress} available={available}/>
+      {/* <PlaygroundChild/> */}
     </Playground>
   );
 }

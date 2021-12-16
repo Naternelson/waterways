@@ -28,11 +28,7 @@ export default function Playground({children}){
     return (
         <Box >
             {createBoxes(2)}
-            <Dialog open={true} maxWidth={"xl"} sx={{
-                "& .MuiDialogContent-root": {
-                    overflow: 'hidden'
-                }
-            }}> 
+            <Dialog open={true} maxWidth={"xl"}>
                 <DialogContent>
                     <Box>
                         {children}

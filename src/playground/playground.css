@@ -4,3 +4,15 @@ body, html, #root {
     max-height: 100vw; */
     overflow: hidden;
 }
+
+.custom-row{
+    display: flex;
+    flex-direction: row;
+    max-height: 75vh;
+    gap: 10px 20px;
+    
+}
+.custom-col {
+    
+    overflow: auto;
+}

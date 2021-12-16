@@ -22,18 +22,17 @@ export default function WaterwayList() {
                 </ListItem>
             </Paper>
         })
-    }
-
+    } 
     const skelton = () => {
         let arr = []
         for(let i = 0; i < 20; i ++){
-            arr.push((<Typography variant="h3"  key={i}><Skeleton varient="rectangular" animation="wave" sx={{width: "200px;"}}/></Typography>))
+            arr.push((<Typography variant="h3"  key={i}><Skeleton varient="rectangular" animation="wave"/></Typography>))
         }
         return arr
     }
     return  (
-        <Box sx={{width: "100%"}}>
-            <List >
+        <Box  >
+            <List>
                 {loading ? skelton() : listWaters(data)}
             </List>
         </Box>
