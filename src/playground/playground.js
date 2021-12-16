@@ -1,4 +1,4 @@
-import { Box, Dialog } from "@mui/material"
+import { Box, Dialog, DialogContent } from "@mui/material"
 import "./playground.css"
 export default function Playground({children}){
     const width = 30
@@ -26,12 +26,18 @@ export default function Playground({children}){
         return results
     }
     return (
-        <Box sx={{height: '100vh'}}>
+        <Box >
             {createBoxes(2)}
-            <Dialog open={true}>
-                <Box p={5} >
-                    {children}
-                </Box>
+            <Dialog open={true} maxWidth={"xl"} sx={{
+                "& .MuiDialogContent-root": {
+                    overflow: 'hidden'
+                }
+            }}> 
+                <DialogContent>
+                    <Box>
+                        {children}
+                    </Box>
+                </DialogContent>
             </Dialog>
         </Box>
     )

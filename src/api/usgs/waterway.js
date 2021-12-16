@@ -101,6 +101,9 @@ class Waterway{
         params.bBox =  this.getBoundingBox({latitude, longitude}, meters)
         try{
             const response = await axios.get(this.apiUrl, {params})
+            // console.group("WATERWAY API")
+            // console.log(response.data)
+            // console.groupEnd()
             return this.generateInstances(response.data, {latitude, longitude}, meters)
         } catch(err) {
             console.error(err)
@@ -110,7 +113,7 @@ class Waterway{
     constructor(props){
         for(let key in props) this[key] = props[key]
         if(props.name){
-            this.name = _.startCase(props.name.toLowerCase()) 
+            this.name = props.name.toUpperCase()
         }
         if(props.stateCd){
             this.state = stateCodes[props.stateCd]

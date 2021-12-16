@@ -65,7 +65,6 @@ export default slice.reducer
 export const {locationChanged,waterwayAdded,waterwayDeleted,waterwaysAdded,waterwaysDeleted,waterwaysLoading,waterwaysLoaded,waterwaysReset} = slice.actions
 
 export const waterwaysAsArraySelector = store => {
-    console.log({store})
     const {data} = store.entities.waterways 
     return Object.entries(data).map(([key,value]) => value)
 }
