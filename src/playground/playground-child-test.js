@@ -1,15 +1,10 @@
-export default function PlaygroundChild(){
-    const list = []
-    for(let i = 0; i < 100; i++){
-        list.push(<li key={i} className="custom-li">Hello World</li>)
-    }
+export default function PlaygroundChild({ver}){
+    console.log("Rendering...",ver)
     return <div className="custom-row">
         <div className="custom-col">
-            <ul>
-                {list}
-            </ul>
+            <h1>Goodbye World</h1>
         </div>
-        <div className="custom-col">
+        <div className="custom">
             <h1>Hi Mom</h1>
         </div>
     </div>

@@ -12,44 +12,31 @@ import PlaygroundChild from './playground/playground-child-test';
 function App() {
   const dispatch = useDispatch()
   const [fullAddress, setAddress] = useState("")
+  const [second, setSecond] = useState(true)
   const {location} = useSelector(s => s.entities.waterways)
   const {latitude, longitude} = location
   const available = latitude && longitude
-  const url = "https://www.google.com/maps/embed/v1/view?"
-  const key = process.env.REACT_APP_GOOGLE_MAPS_KEY
-  function generateUrl(base, params){
-    const paramArr = []
-    for(let key in params){
-      paramArr.push(`${key}=${params[key]}`)
-    }
-    return base + paramArr.join("&")
-  }
+
 
   useEffect(() =>{
     if(available) dispatch(getWaterData({...location,radius: 50}))
   }, [location, available, dispatch])
 
-  useEffect(()=>{
-    if(available) setAddress(
-      generateUrl(
-        url, {
-          key, 
-          zoom: 14, 
-          center: [latitude, longitude].join(",")
-        }
-      )
-    )
-  }, [available, url, key, latitude, longitude])
+
 
   useEffect(()=> {
     if(!available) dispatch(requestLocation())
   },[available, dispatch])
   
+  // useEffect(()=>{
+  //   if(second) setTimeout(()=> setSecond(false), 2000)
+  // })
 
   return (
     <Playground>
       <Display fullAddress={fullAddress} available={available}/>
-      {/* <PlaygroundChild/> */}
+      {/* <PlaygroundChild ver={1}/> */}
+      {/* { second && <PlaygroundChild ver={2}/>} */}
     </Playground>
   );
 }

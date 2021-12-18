@@ -6,13 +6,18 @@ body, html, #root {
 }
 
 .custom-row{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     max-height: 75vh;
-    gap: 10px 20px;
+    gap: 10px 20px; */
+    position: relative;
     
 }
 .custom-col {
     
     overflow: auto;
+}
+.custom {
+    position: absolute;
+    top: 0;
 }

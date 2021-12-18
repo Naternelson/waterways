@@ -28,7 +28,7 @@ export default function Playground({children}){
     return (
         <Box >
             {createBoxes(2)}
-            <Dialog open={true} maxWidth={"xl"}>
+            <Dialog open={true} maxWidth={"xl"} fullWidth>
                 <DialogContent>
                     <Box>
                         {children}
