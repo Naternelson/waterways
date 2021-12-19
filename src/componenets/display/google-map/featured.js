@@ -14,7 +14,7 @@ export default function Featured(){
         else {setLocation(waterway.coord)}
     }, [featuredId])
 
-    return <Box sx={{height:"200px", width: "100%"}}>
+    return <Box sx={{height:"33%", width: "100%"}}>
             <GoogleMapBox location={location}/>
         </Box>
 }

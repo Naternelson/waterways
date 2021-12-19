@@ -1,40 +1,48 @@
 // import { List, Skeleton, ListItem, ListItemText } from "@mui/material"
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import { Paper, Skeleton, Typography } from '@mui/material';
+import {  useDispatch, useSelector, useStore } from 'react-redux';
+import { Skeleton, Typography } from '@mui/material';
 import { sortWaterwaysSelector } from '../../api/usgs/waterways-slice';
-import converter from "conversions"
+import WaterListItem from './w-list-item';
+import { useEffect } from 'react';
 import { featureChanged } from '../../store/slices/ui-slice';
 
 export default function WaterwayList() { 
     const dispatch = useDispatch()
     let {loading} = useSelector(s => s.entities.waterways)
+    const featureId = useSelector(s => s.ui.featured)
     const store = useStore().getState()
     const data = sortWaterwaysSelector(store)
     const listWaters = (waterways) => {
-        return waterways.map((w, i) => {
-            let {name, distance, id} = w 
-            const changeFeatured = () =>{
-                dispatch(featureChanged(id))
-            }
-            distance = Math.round(converter(distance, "metres", "miles") * 10) / 10
-            return <Paper key={i} elevation={3}>
-                <ListItem key={w.id}>
-                    <ListItemText onClick={changeFeatured} onFocus={changeFeatured} primary={name} secondary={`${distance} miles`}/>
-                </ListItem>
-            </Paper>
-        })
+        return waterways.map((w) => <WaterListItem key={w.id} waterway={w}/>)
     } 
     const skelton = () => {
         let arr = []
-        for(let i = 0; i < 10; i ++){
+        for(let i = 0; i < 7; i ++){
             arr.push((<Typography variant="h3"  key={i}><Skeleton varient="rectangular" animation="wave"/></Typography>))
         }
         return arr
     }
+    useEffect(()=> {
+        if(loading === false){
+            if(data.length > 0 && data[0].id)
+                dispatch(featureChanged(data[0].id))
+            }
+    }, [loading])
+
+    useEffect(()=>{
+        if(loading === false){
+            const timer = setTimeout(()=>{
+                let index = data.findIndex(w => w.id === featureId) 
+                if(index === -1) return 
+                index++
+                if(index >= data.length) dispatch(featureChanged(data[0].id))
+                if(index < data.length) dispatch(featureChanged(data[index].id))
+            }, 30000)
+            return () => clearTimeout(timer)
+        }
+    }, [loading, featureId])
     return  (
         <Box  >
             <List>

@@ -31,5 +31,5 @@ export default function GoogleMapBox({location, style, zoom}) {
       >
         <Marker position={formatLocation(location)}/>
         </GoogleMap>
-  ) : <Skeleton animation="wave" height={"100%"}/> 
+  ) : <Skeleton animation="wave" variant="rectangular" height={"100%"}/> 
 }
