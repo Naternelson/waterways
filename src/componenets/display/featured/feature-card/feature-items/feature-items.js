@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import FlowCard from "./flow-card";
 import GageHeightCard from "./gage-height";
+import OxygenCard from "./oxygen-card";
 import RainCard from "./rain-card";
 import TempCard from "./temp-card";
 
@@ -11,14 +12,14 @@ export default function FeatureItems(props){
     const flowCard = <FlowCard data={data}/>
     const gageHeight = <GageHeightCard data={data}/>
     const rainCard = <RainCard data={data}/>
+    const oxygenCard = <OxygenCard data={data}/>
     return (
         <Grid container spacing={2}>
             {tempCard ? tempCard : ""}
             {flowCard ? flowCard : ""}
             {gageHeight ? gageHeight : ""}
             {rainCard ? rainCard : ""}
-            {tempCard ? tempCard : ""}
-            {tempCard ? tempCard : ""}
+            {oxygenCard ? oxygenCard : ""}
         </Grid>
     )
 }
