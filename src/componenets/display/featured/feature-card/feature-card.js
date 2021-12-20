@@ -5,21 +5,23 @@ import FeatureItems from "./feature-items"
 
 export default function FeatureCard(){
     const [transitionIn, setTransition] = useState(true)
-    const [name, setName] = useState("")
+    // const [name, setName] = useState("")
+    const [waterway, setWaterway] = useState({})
+
     const {data} = useSelector(s => s.entities.waterways)
     const id = useSelector(s => s.ui.featured)
-    let waterway = data[id]
+    // let waterway = data[id]
 
     // ====================
     // Smooth Transition Inbetween Locations
     // ====================
     const transitionTime = 300
     useEffect(()=>{
-        if(waterway) {
+        if(data[id]) {
             setTransition(false)
             setTimeout(()=>{
                 setTransition(true)
-                setName(waterway.name)
+                setWaterway(data[id])
             },transitionTime)
         }
     }, [id])
@@ -28,12 +30,14 @@ export default function FeatureCard(){
     // ====================
     // Render
     // ====================
-    const render = (ready=false) => (
+    const render = (ready=false) => {
+        console.log({ready, waterway, data: data[id]})
+        return (
         <Card elevation={5} sx={{height: "100%", width: "100%"}}>
             {ready ? 
             <Fade in={transitionIn} timeout={transitionTime} sx={{height: "100%"}}>
                 <CardContent>
-                    <CardHeader title={name}/>
+                    <CardHeader title={waterway.name}/>
                     <Divider variant="middle"/>
                     <FeatureItems data={waterway.data}/>
                 </CardContent>
@@ -41,6 +45,6 @@ export default function FeatureCard(){
             </Fade> : <Skeleton height={"100%"} width={"100%"} variant={"rectangular"}/>
             }
         </Card>
-    )
-    return render(waterway)
+    )}
+    return render(!!data[id])
 }

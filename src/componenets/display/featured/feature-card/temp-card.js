@@ -22,8 +22,9 @@ export default function TempCard({data}){
     // Set Values based on availability 
     // ====================
     const degree = '\u00B0'
-    const airValue = airTempValid ? CeltoFahr(Math.round(Number(airTemp.value))) : null 
-    const waterValue  = waterTempValid ? CeltoFahr(Math.round(Number(waterTemp.value))) : null 
+    const airValue = airTempValid ? Math.round(CeltoFahr(Number(airTemp.value))) : null 
+    const waterValue  = waterTempValid ? Math.round(CeltoFahr(Number(waterTemp.value))) : null 
+    console.log({airValue, waterValue})
     let title, subheader;
     if(airTempValid && waterTempValid){
         title = "Temp Water / Air"
@@ -39,9 +40,9 @@ export default function TempCard({data}){
     // Render
     // ====================
     return (
-            <Grid item>
-                <Box>
-                    <CardContent>
+            <Grid item xs={4}>
+                <Box sx={{width: "100%"}}>
+                    {/* <CardContent> */}
                         <CardHeader
                             avatar={
                                 <Avatar>
@@ -51,7 +52,7 @@ export default function TempCard({data}){
                             title={title}
                             subheader={subheader}
                         />
-                    </CardContent>
+                    {/* </CardContent> */}
                 </Box>
         </Grid>
     )
