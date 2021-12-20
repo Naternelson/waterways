@@ -1,12 +1,11 @@
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
+import TempCard from "./temp-card";
 
 export default function FeatureItems({data}){
-    const items
+    const tempCard = <TempCard data={data}/>
     return (
-        <Grid item >
-            <Box>
-
-            </Box>
+        <Grid container >
+            {tempCard ? tempCard : ""}
         </Grid>
     )
 }

@@ -1,4 +1,5 @@
-import { Grid } from "@mui/material"
+import { Thermostat } from "@mui/icons-material"
+import { Avatar, Box, Card, CardContent, CardHeader, Grid } from "@mui/material"
 import {CeltoFahr} from "temp_converter"
 
 export default function TempCard({data}){
@@ -17,26 +18,41 @@ export default function TempCard({data}){
     }
     if(!conditionCheck()) return false 
 
-    const airValue = CeltoFahr(Number(airTemp.value))
-    const waterValue  = CeltoFahr(Number(waterTemp.value))
+    // ====================
+    // Set Values based on availability 
+    // ====================
+    const degree = '\u00B0'
+    const airValue = airTempValid ? CeltoFahr(Math.round(Number(airTemp.value))) : null 
+    const waterValue  = waterTempValid ? CeltoFahr(Math.round(Number(waterTemp.value))) : null 
+    let title, subheader;
     if(airTempValid && waterTempValid){
-        // ====================
-        // Has both Air and Water Temperature values
-        // ====================
-
-        return <Grid item>
-            <Card>
-                
-            </Card>
-        </Grid>
+        title = "Temp Water / Air"
+        subheader = `${waterValue}${degree}F / ${airValue}${degree}F`
     } else if(airTempValid){
-        // ====================
-        // Has only Air Temperature Data 
-        // ====================
+        title = "Temp Air"
+        subheader = `${airValue}${degree}F`
     } else {
-        // ====================
-        // Hase Only Water Temperature Data 
-        // ====================
+        title = "Temp Water"
+        subheader = `${waterValue}${degree}F`
     }
-
+    // ====================
+    // Render
+    // ====================
+    return (
+            <Grid item>
+                <Box>
+                    <CardContent>
+                        <CardHeader
+                            avatar={
+                                <Avatar>
+                                    <Thermostat/>
+                                </Avatar>
+                            }
+                            title={title}
+                            subheader={subheader}
+                        />
+                    </CardContent>
+                </Box>
+        </Grid>
+    )
 }
