@@ -10,10 +10,11 @@ import Display from './componenets/display/display';
 
 function App() {
   const dispatch = useDispatch()
-  const {location} = useSelector(s => s.entities.waterways)
+  const {location, data} = useSelector(s => s.entities.waterways)
   const {latitude, longitude} = location
   const available = latitude && longitude
 
+  console.log(data)
 
   useEffect(() =>{
     if(available) dispatch(getWaterData({...location,radius: 50}))

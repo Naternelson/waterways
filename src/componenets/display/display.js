@@ -1,6 +1,6 @@
 import WaterwayList from '../waterway-list/waterway-list';
 import {Grid} from "@mui/material"
-import Featured from './google-map/featured';
+import Featured from './featured/featured';
 export default function Display(){
 
     return  (

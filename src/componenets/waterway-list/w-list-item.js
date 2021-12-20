@@ -13,8 +13,19 @@ export default function WaterListItem({waterway}){
     
     const distanceDisplay = Math.round(converter(distance, "metres", "miles") * 10) / 10
 
-    useEffect(()=>{
+    const scrollWhenFeatured = (featureId) => {
         if(featureId === id ) itemRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    useEffect(()=>{
+        scrollWhenFeatured(featureId)
+    }, [featureId])
+
+    useEffect(()=>{
+        if(featureId === id){
+            window.addEventListener('resize',()=>{
+                scrollWhenFeatured(featureId)
+            })
+        }
     }, [featureId])
 
     return (
