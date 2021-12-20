@@ -31,7 +31,6 @@ export default function FeatureCard(){
     // Render
     // ====================
     const render = (ready=false) => {
-        console.log({ready, waterway, data: data[id]})
         return (
         <Card elevation={5} sx={{height: "100%", width: "100%"}}>
             {ready ? 

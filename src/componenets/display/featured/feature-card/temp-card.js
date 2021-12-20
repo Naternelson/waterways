@@ -24,7 +24,6 @@ export default function TempCard({data}){
     const degree = '\u00B0'
     const airValue = airTempValid ? Math.round(CeltoFahr(Number(airTemp.value))) : null 
     const waterValue  = waterTempValid ? Math.round(CeltoFahr(Number(waterTemp.value))) : null 
-    console.log({airValue, waterValue})
     let title, subheader;
     if(airTempValid && waterTempValid){
         title = "Temp Water / Air"
