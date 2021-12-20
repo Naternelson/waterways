@@ -55,10 +55,15 @@ class Waterway{
         tss.forEach((ts) => {
             const si = ts.sourceInfo
             const vi = ts.variable 
-            const val = ts.values[0].value[0]
+            // const val = ts.values[0].value[0]
+            const val = ts.values[0].value[ts.values[0].value.length -1]
+            if(!val || !val.value) return  
             const siteCode = si.siteCode[0].value
 
             if(!(siteCode in waterways)){
+                // ====================
+                // For Each SiteCode 
+                // ====================
                 let args = {
                     id: siteCode,
                     name: si.siteName, 
@@ -85,6 +90,10 @@ class Waterway{
         return Object.values(waterways) 
     }
     static retrieveArea = async ({latitude, longitude, radius=100, unitType="miles"}) => {
+        // ====================
+        // Main Entry Point to Search area
+        // Here We make our API Call
+        // ====================
         if(!latitude){
             latitude = 41.165740
             longitude = -112.025970
@@ -94,7 +103,8 @@ class Waterway{
             indent: "on",
             siteType: 'LK,ST',
             siteStatus: 'active',
-            parameterCd: this.paramCodes
+            period: 'P1D'
+            // parameterCd: this.paramCodes
         }
 
         const meters = converter(radius, unitType, "metres")
@@ -117,10 +127,14 @@ class Waterway{
         }
     }
     serialize(){
+        const startObj = {lastUpdatedOn: this.lastUpdatedOn } 
         return Object.keys(this).reduce((obj, key) =>  {
             obj[key] = this[key] instanceof Date ? this[key].toString() : this[key] 
             return obj
-        },{})
+        },startObj)
+    }
+    get lastUpdatedOn(){
+       return Object.values(this.data).sort((a,b) => Date(b.dateTime) - Date(a.dateTime))[0].dateTime
     }
 }
 
