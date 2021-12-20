@@ -1,5 +1,5 @@
-import { Thermostat } from "@mui/icons-material"
-import { Avatar, Box, Card, CardContent, CardHeader, Grid } from "@mui/material"
+import { Thermostat, ThermostatAutoOutlined, ThermostatOutlined, ThermostatRounded } from "@mui/icons-material"
+import { Avatar, Box, Card, CardContent, CardHeader, Grid, Paper } from "@mui/material"
 import {CeltoFahr} from "temp_converter"
 
 export default function TempCard({data}){
@@ -26,33 +26,28 @@ export default function TempCard({data}){
     const waterValue  = waterTempValid ? Math.round(CeltoFahr(Number(waterTemp.value))) : null 
     let title, subheader;
     if(airTempValid && waterTempValid){
-        title = "Temp Water / Air"
+        title = "Water / Air Temp"
         subheader = `${waterValue}${degree}F / ${airValue}${degree}F`
     } else if(airTempValid){
-        title = "Temp Air"
+        title = "Air Temp"
         subheader = `${airValue}${degree}F`
     } else {
-        title = "Temp Water"
+        title = "Water Temp"
         subheader = `${waterValue}${degree}F`
     }
     // ====================
     // Render
     // ====================
     return (
-            <Grid item xs={4}>
-                <Box sx={{width: "100%"}}>
-                    {/* <CardContent> */}
+            <Grid item xs={12} md={6} lg={4}>
+                
+                <Paper sx={{width: "100%", height: "100%"}}>
                         <CardHeader
-                            avatar={
-                                <Avatar>
-                                    <Thermostat/>
-                                </Avatar>
-                            }
+                            avatar={<ThermostatOutlined color={"primary"} />}
                             title={title}
                             subheader={subheader}
                         />
-                    {/* </CardContent> */}
-                </Box>
+                </Paper>
         </Grid>
     )
 }

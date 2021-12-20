@@ -5,12 +5,10 @@ import FeatureItems from "./feature-items"
 
 export default function FeatureCard(){
     const [transitionIn, setTransition] = useState(true)
-    // const [name, setName] = useState("")
     const [waterway, setWaterway] = useState({})
 
     const {data} = useSelector(s => s.entities.waterways)
     const id = useSelector(s => s.ui.featured)
-    // let waterway = data[id]
 
     // ====================
     // Smooth Transition Inbetween Locations
