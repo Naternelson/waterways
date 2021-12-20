@@ -1,4 +1,4 @@
-import { Box, Card, CardHeader, Collapse, Fade, Grow, Skeleton, Slide, Zoom } from "@mui/material"
+import { Box, Card, CardContent, CardHeader, Collapse, Divider, Fade, Grow, Skeleton, Slide, Zoom } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
@@ -20,12 +20,18 @@ export default function FeatureCard(){
     }, [id])
 
 
-    const render = () => (
-        <Card sx={{height: "100%", width: "100%"}}>
+    const render = (ready=false) => (
+        <Card elevation={5} sx={{height: "100%", width: "100%"}}>
+            {ready ? 
             <Fade in={transitionIn} timeout={transitionTime} sx={{height: "100%"}}>
-                <CardHeader title={name}/>
-            </Fade>
+                <CardContent>
+                    <CardHeader title={name}/>
+                    <Divider variant="middle"/>
+                </CardContent>
+                
+            </Fade> : <Skeleton height={"100%"} width={"100%"} variant={"rectangular"}/>
+            }
         </Card>
     )
-    return waterway ? render() : <Skeleton height={"100%"} width={"100%"} variant={"rectangular"}/>
+    return render(waterway)
 }

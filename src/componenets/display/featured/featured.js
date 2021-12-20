@@ -1,7 +1,7 @@
 import {  Grid, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import FeatureCard from "./feature-card";
+import FeatureCard from "./feature-card/feature-card";
 import GoogleMapBox from "./google-map/googleMapBox";
 
 export default function Featured(){
@@ -16,8 +16,8 @@ export default function Featured(){
 
     return <Grid container spacing={2} sx={{height: "100%"}}>
         <Grid item sx={{height: "34%", width: "100%"}}>
-            <Paper elevation={3} sx={{height: "100%", width: "100%"}}>
-                <GoogleMapBox location={location} style={{p:2}}/>
+            <Paper elevation={5} sx={{height: "100%", width: "100%"}}>
+                <GoogleMapBox location={location}/>
             </Paper>
         </Grid>
         <Grid item sx={{height: "66%", width: "100%"}}>

@@ -21,13 +21,28 @@ export default function GoogleMapBox({location, style, zoom}) {
       lng: location.lng || location.longitude
     }
   }
+  // {
+  //   zoomControl: boolean,
+  //   mapTypeControl: boolean,
+  //   scaleControl: boolean,
+  //   streetViewControl: boolean,
+  //   rotateControl: boolean,
+  //   fullscreenControl: boolean
+  // }
 
+  const mapOptions = {
+    fullscreenControl: false,
+    scaleControl: false, 
+    mapTypeControl: false,
+    rotateControl: false
+}
   const styles = {height: "100%", width: "100%", ...style}
   return ready ? (
-      <GoogleMap
+      <GoogleMap 
         mapContainerStyle={styles}
         center={formatLocation(location)}
         zoom={zoom || 14}
+        options={mapOptions}
       >
         <Marker position={formatLocation(location)}/>
         </GoogleMap>
