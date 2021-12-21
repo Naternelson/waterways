@@ -1,23 +1,4 @@
 body, html, #root {
     min-height: 100vh;
-    /* max-width: 100wh;
-    max-height: 100vw; */
     overflow: hidden;
-}
-
-.custom-row{
-    /* display: flex;
-    flex-direction: row;
-    max-height: 75vh;
-    gap: 10px 20px; */
-    position: relative;
-    
-}
-.custom-col {
-    
-    overflow: auto;
-}
-.custom {
-    position: absolute;
-    top: 0;
 }

@@ -1,6 +1,5 @@
-import './App.css';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import {getWaterData} from "./api/usgs/waterways-slice"
 import {requestLocation} from "./store/middleware/currentLocation"
@@ -13,8 +12,7 @@ import { changeBackgroundTheme, changeMode } from './store/slices/ui-slice';
 function App() {
   const dispatch = useDispatch()
   const timer = useRef()
-  dispatch(changeMode('dark'))
-  dispatch(changeBackgroundTheme('fishing'))
+
   const {mode, maxRadius, updateUnit, updateRate} = useSelector(s => s.ui)
   const {location} = useSelector(s => s.entities.waterways)
   const {latitude, longitude} = location
@@ -38,10 +36,14 @@ function App() {
           dispatch(getWaterData({...location, radius: maxRadius}))
         }, refreshRate)
       }
-    
-  }, [location, available, dispatch])
+    return () => clearInterval(timer.current)
+  }, [location, available, dispatch, maxRadius, refreshRate])
 
 
+  useEffect(()=>{
+    dispatch(changeMode('dark'))
+    dispatch(changeBackgroundTheme('fishing'))
+  }, [dispatch])
 
   useEffect(()=> {
     if(!available) dispatch(requestLocation())

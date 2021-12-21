@@ -1,6 +1,6 @@
-import {useState, useCallback, useEffect} from 'react'
+import {useState,  useEffect} from 'react'
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import { Box, Paper, Skeleton } from '@mui/material';
+import { Skeleton } from '@mui/material';
 
 
 export default function GoogleMapBox({location, style, zoom}) {

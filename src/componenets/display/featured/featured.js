@@ -12,7 +12,7 @@ export default function Featured(){
         const waterway = waterways[featuredId]
         if(!waterway || !waterway.coord)  {setLocation({})}
         else {setLocation(waterway.coord)}
-    }, [featuredId])
+    }, [featuredId, waterways])
 
     return <Grid container spacing={2} sx={{height: "100%"}}>
         <Grid item sx={{height: "34%", width: "100%"}}>

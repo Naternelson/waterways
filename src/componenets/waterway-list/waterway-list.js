@@ -2,7 +2,7 @@
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import {  useDispatch, useSelector, useStore } from 'react-redux';
-import { Input, InputAdornment, Paper, Skeleton, TextField, Typography } from '@mui/material';
+import { Input, InputAdornment, Paper, Skeleton, Typography } from '@mui/material';
 import { sortWaterwaysSelector } from '../../api/usgs/waterways-slice';
 import WaterListItem from './w-list-item';
 import { useEffect } from 'react';
@@ -33,11 +33,12 @@ export default function WaterwayList() {
     // Set the first value to focus
     // ====================
     useEffect(()=> {
-        if(loading === false){
-            if(data.length > 0 && data[0].id)
+        if(loading === false && !featured){
+            if(data.length > 0 && data[0].id){
                 dispatch(featureChanged(data[0].id))
             }
-    }, [loading])
+        }
+    }, [loading, dispatch, data, featured])
 
     // ====================
     // Auto Scroll Through List
@@ -53,7 +54,7 @@ export default function WaterwayList() {
             }, scrollTime)
             return () => clearTimeout(timer)
         }
-    }, [loading, autoScroll, featured])
+    }, [loading, autoScroll, scrollTime, data, dispatch, featured])
     
     // ====================
     // Callback

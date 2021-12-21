@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardHeader, Collapse, Divider, Fade, Grow, Skeleton, Slide, Typography, Zoom } from "@mui/material"
+import { Box, Card,  CardHeader,  Divider, Fade,  Skeleton,  Typography} from "@mui/material"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import isToday, { isYesterday } from "../../../../utility/isToday"
@@ -31,7 +31,7 @@ export default function FeatureCard(){
                 setWaterway(data[id])
             },transitionTime)
         }
-    }, [id])
+    }, [id, data])
 
 
     // ====================

@@ -1,5 +1,5 @@
-import { Grain, Water } from "@mui/icons-material"
-import { Avatar, Box, CardHeader, Grid, Paper } from "@mui/material"
+import { Grain } from "@mui/icons-material"
+import {  CardHeader, Grid, Paper } from "@mui/material"
 
 export default function OxygenCard({data}){
     const oxygen = data["00300"]

@@ -1,5 +1,5 @@
-import { Thermostat, ThermostatAutoOutlined, ThermostatOutlined, ThermostatRounded } from "@mui/icons-material"
-import { Avatar, Box, Card, CardContent, CardHeader, Grid, Paper } from "@mui/material"
+import {  ThermostatOutlined } from "@mui/icons-material"
+import {  CardHeader, Grid, Paper } from "@mui/material"
 import {CeltoFahr} from "temp_converter"
 
 export default function TempCard({data}){
