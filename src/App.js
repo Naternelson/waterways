@@ -22,7 +22,7 @@ function App() {
   const available = latitude && longitude
   const theme = createTheme({
     typography: {
-      fontSize: 16
+      fontSize: 15
     },
     palette: {mode}
   })
