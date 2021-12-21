@@ -9,7 +9,7 @@ export default function FlowCard({data}){
     // ====================
     const conditionCheck = () => {
         if(!flow || flow.noData) flowValid = false 
-        if(!flowValid ) return false 
+        if(!flow ) return false 
         return true 
     }
     if(!conditionCheck()) return false 
@@ -19,11 +19,11 @@ export default function FlowCard({data}){
     // ====================
     const flowValue = flowValid ? Math.round(Number(flow.value)) : null 
     const title = "Flow Rate"
-    const flowDisplay = `${flowValue} ft`
+    const flowDisplay = flowValid ? `${flowValue} ft` : "No Data Available"
+    const unit = flowValid ? <><sup>3</sup><span>/sec</span></> : ""
     const subheader = <span>
         {flowDisplay}
-        <sup>3</sup>
-        <span>/sec</span>
+        {unit}
     </span>
 
     // ====================

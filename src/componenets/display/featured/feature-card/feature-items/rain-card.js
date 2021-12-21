@@ -10,7 +10,7 @@ export default function RainCard({data}){
     // ====================
     const conditionCheck = () => {
         if(!rainHeight || rainHeight.noData) rainValid = false 
-        if(!rainValid) return false 
+        if(!rainHeight) return false 
         return true 
     }
     if(!conditionCheck()) return false 
@@ -21,7 +21,7 @@ export default function RainCard({data}){
     const rainValue = rainValid ? Math.round(Number(rainHeight.value)) : null 
 
     const title = "Rainfall"
-    const subheader = `${rainValue} in`
+    const subheader = rainValid ? `${rainValue} in` : "No Data Available"
     // ====================
     // Render
     // ====================

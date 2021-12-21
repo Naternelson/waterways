@@ -6,7 +6,8 @@ const api = ({dispatch}) => next => async action => {
     try{
         const list = await Waterway.retrieveArea(action.payload)
         dispatch(waterwaysAdded(Waterway.serialize(list)))
-        dispatch(waterwaysLoaded())
+        // dispatch(waterwaysLoaded())
+        setTimeout(()=> dispatch(waterwaysLoaded()), 2000)
     } catch(err) {
         console.error(err)
     }

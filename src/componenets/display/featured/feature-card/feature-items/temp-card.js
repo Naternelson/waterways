@@ -13,7 +13,7 @@ export default function TempCard({data}){
     const conditionCheck = () => {
         if(!airTemp || airTemp.noData) airTempValid = false 
         if(!waterTemp || waterTemp.noData) waterTempValid = false 
-        if(!airTempValid && !waterTempValid) return false 
+        if(!airTemp && !waterTemp) return false 
         return true 
     }
     if(!conditionCheck()) return false 
@@ -31,9 +31,12 @@ export default function TempCard({data}){
     } else if(airTempValid){
         title = "Air Temp"
         subheader = `${airValue}${degree}F`
-    } else {
+    } else if(waterTempValid) {
         title = "Water Temp"
         subheader = `${waterValue}${degree}F`
+    } else {
+        title = "Temp"
+        subheader = "No Data Available"
     }
     // ====================
     // Render

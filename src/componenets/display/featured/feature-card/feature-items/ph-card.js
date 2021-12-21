@@ -1,24 +1,24 @@
-import { Grain, Water } from "@mui/icons-material"
-import { Avatar, Box, CardHeader, Grid, Paper } from "@mui/material"
+import { Grain, ViewModule } from "@mui/icons-material"
+import { CardHeader, Grid, Paper } from "@mui/material"
 
-export default function OxygenCard({data}){
-    const oxygen = data["00300"]
+export default function PHCard({data}){
+    const ph = data["00400"]
     let valid = true 
     // ====================
     // Check to see if need to skip
     // ====================
     const conditionCheck = () => {
-        if(!oxygen || oxygen.noData) valid = false 
-        if(!oxygen ) return false 
+        if(!ph || ph.noData) valid = false 
+        if(!ph ) return false 
         return true 
     }
     if(!conditionCheck()) return false 
     // ====================
     // Set Values based on availability 
     // ====================
-    const oxygenValue = valid ? Math.round(Number(oxygen.value)) : null 
-    const title = "Dissolved Oxygen"
-    const subheader = valid ? `${oxygenValue} mg/L` : "No Data Available"
+    const phValue = valid ? Number(ph.value) : null 
+    const title = "Water PH"
+    const subheader = valid ? `${phValue}` : "No Data Available"
 
     // ====================
     // Render
@@ -28,7 +28,7 @@ export default function OxygenCard({data}){
                 
                 <Paper sx={{width: "100%", height: "100%", display: 'flex', alignItems: 'center'}}>
                     <CardHeader
-                        avatar={<Grain color={'primary'}/>}
+                        avatar={<ViewModule color={'primary'}/>}
                         title={title}
                         subheader={subheader}
                     />

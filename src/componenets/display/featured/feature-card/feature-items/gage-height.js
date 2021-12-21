@@ -10,7 +10,7 @@ export default function GageHeightCard({data}){
     // ====================
     const conditionCheck = () => {
         if(!gageHeight || gageHeight.noData) gageValid = false 
-        if(!gageValid) return false 
+        if(!gageHeight) return false 
         return true 
     }
     if(!conditionCheck()) return false 
@@ -21,7 +21,7 @@ export default function GageHeightCard({data}){
     const gageValue = gageValid ? Math.round(Number(gageHeight.value)) : null 
 
     const title = "Gage Height"
-    const subheader = `${gageValue} ft`
+    const subheader = gageValid ? `${gageValue} ft` : "No Data Available"
     // ====================
     // Render
     // ====================
