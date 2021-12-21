@@ -46,7 +46,6 @@ export default function FeatureItems(props){
     function checkAllValues(){
         return Object.keys(cards).some(key => checkValue(key))
     }
-    console.log({checkValues: checkAllValues()})
     return (
         !checkAllValues() ? (
             <Box sx={{display: 'flex', alignItems:"center", justifyContent:"center", height: "100%"}}> 

@@ -13,7 +13,9 @@ const initialState = {
     autoScroll: true, 
     scrollTime: 30000,
     searchRadius: 50,
-    maxRadius: 100
+    maxRadius: 100,
+    updateUnit: "minute",
+    updateRate: 60
 }
 
 

@@ -6,7 +6,6 @@ export default function wait(millseconds){
 }
 let iterations = 0
 function check(start, millseconds, cb, rejection ){
-    // console.log({now: Date.now(), start, expired: Date.now()-start, millseconds})
     if(Date.now() - start >= millseconds) cb(true) 
     else if (iterations < 1000) {
         

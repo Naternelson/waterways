@@ -66,30 +66,33 @@ export default function WaterwayList() {
         }
     }
     return  (<>
-        <Paper sx={{height: "30%", maxHeight: '40%', p:3, mb: 0, textAlign: 'center', alignItems:"center"}}>
-            <Typography sx={{p: 0}}variant='h1'>Angler's Den</Typography>
-            <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', px: 5}}>
-                <Typography variant='subtitle2'>Local Waterways</Typography>
-                <Box>
-                    <Input disableUnderline sx={{
-                        width:"100px",
-                        "& .MuiInput-input": {textAlign: 'center'}
-                        }} type={'number'}
-                        variant= 'standard'
-                        endAdornment={<InputAdornment position="end">miles</InputAdornment>}
-                        value={searchRadius}
-                        onChange={changeHandler}
-                        />
+    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', maxHeight: '100%'}}>
+        <Paper sx={{ display: 'flex',  py:5, mb: 1, mr:1, textAlign: 'center', alignItems:"center", justifyContent: 'center'}}>
+            <Box>
+                <Typography sx={{p: 0}}variant='h2'>Angler's Den</Typography>
+                <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', px: 5, pt: 2}}>
+                    <Typography variant='subtitle2'>Local Waterways</Typography>
+                    <Box>
+                        <Input disableUnderline sx={{
+                            width:"100px",
+                            "& .MuiInput-input": {textAlign: 'center', p:0}
+                            }} type={'number'}
+                            variant= 'standard'
+                            endAdornment={<InputAdornment position="end">miles</InputAdornment>}
+                            value={searchRadius}
+                            onChange={changeHandler}
+                            />
+                    </Box>
+        
                 </Box>
-      
             </Box>
         </Paper>
-        <Box  sx={{overflow: 'auto', maxHeight: '70%', pr: 1, mt: 2}}>
+        <Box  sx={{overflow: 'auto', pr: 1}}>
             <List>
                 {loading ? skelton(5) : listWaters(data)}
             </List>
         </Box>
-    
+    </Box>
     </>
 
     )
