@@ -11,7 +11,7 @@ import { featureChanged } from '../../store/slices/ui-slice';
 export default function WaterwayList() { 
     const dispatch = useDispatch()
     let {loading} = useSelector(s => s.entities.waterways)
-    const featureId = useSelector(s => s.ui.featured)
+    const {featured, autoScroll, scrollTime} = useSelector(s => s.ui)
     const store = useStore().getState()
     const data = sortWaterwaysSelector(store)
     const listWaters = (waterways) => {
@@ -32,17 +32,17 @@ export default function WaterwayList() {
     }, [loading])
 
     useEffect(()=>{
-        if(loading === false){
+        if(loading === false && autoScroll){
             const timer = setTimeout(()=>{
-                let index = data.findIndex(w => w.id === featureId) 
+                let index = data.findIndex(w => w.id === featured) 
                 if(index === -1) return 
                 index++
                 if(index >= data.length) dispatch(featureChanged(data[0].id))
                 if(index < data.length) dispatch(featureChanged(data[index].id))
-            }, 30000)
+            }, scrollTime)
             return () => clearTimeout(timer)
         }
-    }, [loading, featureId])
+    }, [loading, autoScroll, featured])
     return  (
         <Box  >
             <List>
