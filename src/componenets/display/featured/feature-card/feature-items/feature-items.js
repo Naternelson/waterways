@@ -8,6 +8,9 @@ import TempCard from "./temp-card";
 
 export default function FeatureItems(props){
     if(!props.data) return ""
+    // ====================
+    // Variables
+    // ====================
     const data = props.data 
     const cards = {
         temp: {
@@ -36,6 +39,9 @@ export default function FeatureItems(props){
         }
     }
 
+    // ====================
+    // Helper Functions
+    // ====================
     function checkValue(type){
         const obj = cards[type]
         if(!obj) return false 

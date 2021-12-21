@@ -1,6 +1,9 @@
 import { locationChanged } from "../../api/usgs/waterways-slice"
 import { createAction } from "@reduxjs/toolkit"
 const request = ({dispatch}) => next => async (action) => {
+    // ====================
+    // Make Request to USGS
+    // ====================
     next(action)
     if(action.type !== requestLocation.type) return
     navigator.geolocation.getCurrentPosition((pos) => {

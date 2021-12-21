@@ -2,10 +2,17 @@ import { Box, Dialog, DialogContent } from "@mui/material"
 import { useSelector } from "react-redux"
 import "./playground.css"
 export default function Playground({children}){
+    // ====================
+    // Hooks and Variables
+    // ====================
     const {backgroundTheme, backgroundThemes} = useSelector(s => s.ui)
     const theme = backgroundThemes[backgroundTheme]
     const width = 30
     let left = -30
+
+    // ====================
+    // Helper Functions
+    // ====================
     function boxshape(bg, key){
         left+=width
         return <Box key={key} sx={{

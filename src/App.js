@@ -10,6 +10,9 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { changeBackgroundTheme, changeMode } from './store/slices/ui-slice';
 
 function App() {
+  // ====================
+  // Hooks and Variables
+  // ====================
   const dispatch = useDispatch()
   const timer = useRef()
 
@@ -31,6 +34,9 @@ function App() {
   useEffect(() =>{
     if(timer) clearInterval(timer.current)
     if(available) {
+      // ====================
+      // With the Location, make a Request to server every ${refresh rate}
+      // ====================
         dispatch(getWaterData({...location, radius: maxRadius}))
         timer.current = setInterval(()=>{
           dispatch(getWaterData({...location, radius: maxRadius}))
@@ -39,13 +45,21 @@ function App() {
     return () => clearInterval(timer.current)
   }, [location, available, dispatch, maxRadius, refreshRate])
 
-
+  // ====================
+  // Effects
+  // ====================
   useEffect(()=>{
+    // ====================
+    // Set Up Theme
+    // ====================
     dispatch(changeMode('dark'))
     dispatch(changeBackgroundTheme('fishing'))
   }, [dispatch])
 
   useEffect(()=> {
+    // ====================
+    // Request User Location
+    // ====================
     if(!available) dispatch(requestLocation())
   },[available, dispatch])
 

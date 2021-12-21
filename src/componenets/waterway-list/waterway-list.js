@@ -10,8 +10,10 @@ import { changeRadius, featureChanged } from '../../store/slices/ui-slice';
 
 
 export default function WaterwayList() { 
+    // ====================
+    // Hooks and Variables
+    // ====================
     const dispatch = useDispatch()
-    
     let {loading} = useSelector(s => s.entities.waterways)
     const {featured, autoScroll, scrollTime, searchRadius, maxRadius} = useSelector(s => s.ui)
     const store = useStore().getState()

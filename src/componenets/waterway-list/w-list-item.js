@@ -26,6 +26,10 @@ export default function WaterListItem({waterway}){
             }
         }
     }, [itemRef, id])
+    
+    // ====================
+    // Effects
+    // ====================
     useEffect(()=>{
         scrollWhenFeatured(featureId)
     }, [featureId, scrollWhenFeatured])

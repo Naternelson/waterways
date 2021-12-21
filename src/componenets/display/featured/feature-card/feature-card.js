@@ -5,6 +5,9 @@ import isToday, { isYesterday } from "../../../../utility/isToday"
 import FeatureItems from "./feature-items/feature-items"
 
 export default function FeatureCard(){
+    // ====================
+    // Hooks and Variables
+    // ====================
     const [transitionIn, setTransition] = useState(true)
     const [waterway, setWaterway] = useState({})
 
@@ -18,7 +21,6 @@ export default function FeatureCard(){
         isYesterday(dateTime) ? `Yesterday ${time}` :
         `${dateTime.toLocaleDateString()} ${time}`
 
-    // const fullDateTimeString = `${dateTime.toLocaleTimeString([], {timeStyle: 'short'})} ${dateTime.toLocaleDateString()}`
     // ====================
     // Smooth Transition Inbetween Locations
     // ====================
