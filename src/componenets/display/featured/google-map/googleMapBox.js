@@ -21,14 +21,6 @@ export default function GoogleMapBox({location, style, zoom}) {
       lng: location.lng || location.longitude
     }
   }
-  // {
-  //   zoomControl: boolean,
-  //   mapTypeControl: boolean,
-  //   scaleControl: boolean,
-  //   streetViewControl: boolean,
-  //   rotateControl: boolean,
-  //   fullscreenControl: boolean
-  // }
 
   const mapOptions = {
     fullscreenControl: false,

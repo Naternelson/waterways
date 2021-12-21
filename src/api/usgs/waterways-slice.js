@@ -1,5 +1,6 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
 import {getDistance} from "geolib"
+import converter from 'conversions'
 
 const name = "waterways"
 const initialState = {
@@ -68,11 +69,11 @@ export const waterwaysAsArraySelector = store => {
     const {data} = store.entities.waterways 
     return Object.entries(data).map(([key,value]) => value)
 }
-export const sortWaterwaysSelector = (store, closestFirst=true) => {
+export const sortWaterwaysSelector = (store, closestFirst=true, radius=-1) => {
     const {location} = store.entities.waterways
     const arr = waterwaysAsArraySelector(store)
     if(!location.latitude) return arr  
-    return arr.sort((a, b) => {
+    const sortedArr =  arr.sort((a, b) => {
         const distanceA = getDistance(location, a.coord)
         const distanceB = getDistance(location, b.coord)
         if(closestFirst){
@@ -80,6 +81,10 @@ export const sortWaterwaysSelector = (store, closestFirst=true) => {
         } else {
             return distanceB-distanceA
         }
+    })
+    if(radius < 0) return sortedArr
+    return sortedArr.filter(el => {
+        return el.distance < converter(radius, "miles", "metres")  
     })
 }
 export const sortByNSWaterwaysSelector = (store, NtoS = true) => {

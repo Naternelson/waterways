@@ -11,7 +11,9 @@ const initialState = {
     },
     backgroundTheme: 'playful',
     autoScroll: true, 
-    scrollTime: 30000
+    scrollTime: 30000,
+    searchRadius: 50,
+    maxRadius: 100
 }
 
 
@@ -21,6 +23,9 @@ const slice = createSlice({
     reducers: {
         changeUi: (store, action) => {
             store = {...store, ...action.payload}
+        },
+        changeRadius: (store, action) => {
+            store.searchRadius = action.payload 
         },
         changeAutoScroll: (store, action) => {
             store.autoScroll = !!action.payload
@@ -44,4 +49,4 @@ const slice = createSlice({
 })
 
 export default slice.reducer
-export const {changeUi, changeAutoScroll, changeScrollTime, featureChanged, featuredReset,changeMode, changeBackgroundTheme} = slice.actions
+export const {changeRadius, changeUi, changeAutoScroll, changeScrollTime, featureChanged, featuredReset,changeMode, changeBackgroundTheme} = slice.actions

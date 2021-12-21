@@ -22,7 +22,7 @@ export default function FeatureCard(){
     // ====================
     // Smooth Transition Inbetween Locations
     // ====================
-    const transitionTime = 300
+    const transitionTime = 100
     useEffect(()=>{
         if(data[id]) {
             setTransition(false)
@@ -39,14 +39,14 @@ export default function FeatureCard(){
     // ====================
     const render = (ready=false) => {
         return (
-        <Card elevation={5} sx={{height: "100%", width: "100%"}}>
+        <Card elevation={5} sx={{height: "100%", width: "100%", mt: 1}}>
             {ready ? 
             <Fade in={transitionIn} timeout={transitionTime}>
                 <Box sx={{display: 'flex', flexFlow: 'column', height: "100%", p: 2}}>
                     <CardHeader title={waterway.name} sx={{py: 1}}/>
                     <Box sx={{mx: 6, my: 0}}>
                         <Typography variant={'subtitle2'}>State: <Typography variant={'subtitle1'} component={'span'}>{waterway.state}</Typography></Typography>
-                        <Typography variant={'subtitle2'}>Last Updated On: <Typography variant={'subtitle1'} component={'span'}>{fullTime}</Typography></Typography>
+                        <Typography variant={'subtitle2'}>Last Updated: <Typography variant={'subtitle1'} component={'span'}>{fullTime}</Typography></Typography>
                     </Box>
 
                     <Divider variant="middle" />
