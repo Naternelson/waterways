@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/waterways/static/css/main.9535bf0b.chunk.css",
+    "main.js": "/waterways/static/js/main.fd329e3d.chunk.js",
+    "main.js.map": "/waterways/static/js/main.fd329e3d.chunk.js.map",
+    "runtime-main.js": "/waterways/static/js/runtime-main.ebb5cd42.js",
+    "runtime-main.js.map": "/waterways/static/js/runtime-main.ebb5cd42.js.map",
+    "static/js/2.c435d08d.chunk.js": "/waterways/static/js/2.c435d08d.chunk.js",
+    "static/js/2.c435d08d.chunk.js.map": "/waterways/static/js/2.c435d08d.chunk.js.map",
+    "index.html": "/waterways/index.html",
+    "static/css/main.9535bf0b.chunk.css.map": "/waterways/static/css/main.9535bf0b.chunk.css.map",
+    "static/js/2.c435d08d.chunk.js.LICENSE.txt": "/waterways/static/js/2.c435d08d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ebb5cd42.js",
+    "static/js/2.c435d08d.chunk.js",
+    "static/css/main.9535bf0b.chunk.css",
+    "static/js/main.fd329e3d.chunk.js"
+  ]
+}
